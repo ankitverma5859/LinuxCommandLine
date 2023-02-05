@@ -151,6 +151,19 @@ drwxr-xr-x 2 user user      4096 May 30  2018  codeblocks
 -rw-rw-r-- 1 user user  89863696 Aug 23 00:23  google-chrome-stable_current_amd64.deb
 -rw-rw-r-- 1 user user 305557504 May 30  2018  jdk-8u171-nb-8_2-linux-x64.sh
 -rw-rw-r-- 1 user user 223882240 May 30  2018  netbeans-8.2-linux.sh
+
+Starts with -     : Regular File
+Starts with d     : Directory
+Number            : Number of Hard Links 
+Next 3 characters : Access Rights for File Owner
+Next 3 characters : Access Rights for the members of files group
+Next 3 characters : Access Rights for everyone else
+
+user              : Username of the File's Owner
+user              : Name of the group that owns the file
+                  : Size of the file in bytes
+                  : Last Modified Date
+                  : Name of the file.
 ```
 
 > -t option sorts in most recently modified 
@@ -186,24 +199,38 @@ drwxrwxr-x 2 user user      4096 Aug 23 00:53  chromedriver_linux64
 ```
 
 | Option | Long option | Description | 
+|------- | ------------ | ---------- |
 | -a | --all | List all files, even those with names that begin with a period, which are normally not listed (that is, hidden). | 
+| -A | --almost-all | Like the -a option except it does not list . (current directory) and .. (parent directory). |
+| -d | --directory | Ordinarily, if a directory is specified, ls will list the contents of the directory, not the directory itself. Use this option in conjunction with the -l option to see details about the directory rather than its contents.|
+| -F | --classify | This option will append an indicator character to the end of each listed name. For example, it will append a forward slash (/) if the name is a directory.|
+| -h | --human-readable | In long format listings, display file sizes in humanreadable format rather than in bytes.|
+|-l | | Display results in long format.|
+|-r | --reverse | Display the results in reverse order. Normally, ls displays its results in ascending alphabetical order.|
+|-S | | Sort results by file size.|
+|-t | | Sort by modification time.|
 
+> less
 ```
--A --almost-all Like the -a option except it does not list . (current directory) and .. (parent directory).
--d --directory Ordinarily, if a directory is specified, ls will list the
-contents of the directory, not the directory itself. Use this
-option in conjunction with the -l option to see details
-about the directory rather than its contents.
--F --classify This option will append an indicator character to the
-end of each listed name. For example, it will append a
-forward slash (/) if the name is a directory.
--h --human-readable In long format listings, display file sizes in humanreadable format rather than in bytes.
--l Display results in long format.
--r --reverse Display the results in reverse order. Normally, ls displays its results in ascending alphabetical order.
--S Sort results by file size.
--t Sort by modification time.
+less filename
+UP arrow    : 1 line up
+Down arrow  : 1 line down
+B           : One Page up
+SPACE       : One Page down
+G           : End of the doc
+g           : First Page of the doc
+/characters : Search
+n           : Next Occurance of the above 
+q           : Quit
 ```
 
+
+##### Soft Links
+- Soft Links / Symbolic Links / Symlinks are required in a following scenario.
+- Suppose there is a shared resource of some kind stored in a file called foo.
+- Now, if the foo is updated to a new version called foo_2.6, all the programs using this shared resource needs to be updated with the filename.
+- Here, soft links comes in to picture. We create a symbolic link called foo and point it to foo_2.6. All the programs refer to foo to execute. Since, foo is pointing to foo_2.6 it will be executed.
+- During the update/downgrade of the version we just update the symbolic link of the foo, and thats it.
 #### Chapter 4:
 #### Chapter 5:
 #### Chapter 6:
