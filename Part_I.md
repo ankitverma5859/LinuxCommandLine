@@ -231,7 +231,76 @@ q           : Quit
 - Now, if the foo is updated to a new version called foo_2.6, all the programs using this shared resource needs to be updated with the filename.
 - Here, soft links comes in to picture. We create a symbolic link called foo and point it to foo_2.6. All the programs refer to foo to execute. Since, foo is pointing to foo_2.6 it will be executed.
 - During the update/downgrade of the version we just update the symbolic link of the foo, and thats it.
-#### Chapter 4:
+
+#### Chapter 4: Manipulating Files and Directories
+
+> COPY
+```
+cp source destination
+```
+
+> Wildcards
+
+| Wildcard | Meaning |
+| -------- | ------- |
+| * | Matches any characters |
+| ? | Matches a single character |
+| [characters] | Matchers any character that is member of the set of characters |
+| [!characters] | Matches any character that is not a member of the set of characters |
+| [:class:] | Matches any character that is member of the specified class |
+
+> Classes
+
+| Character class | Meaning | 
+| --------------- | ------- |
+| [:alnum:] | Matches any alphanumeric character |
+| [:alpha:] | Matches any alphabetic character |
+| [:digit:] | Matches any numeral |
+| [:lower:] | Matches any lowercase letter |
+| [:upper:] | Matches any uppercase letter | 
+
+> Examples 
+
+|Pattern | Matches |
+| ------ | ------- |
+| * | All files |
+| g* | Any file beginning with g |
+| b*.txt | Any file beginning with b followed by any characters and ending with .txt |
+| Data??? | Any file beginning with Data followed by exactly three characters |
+| [abc]* | Any file beginning with either an a, a b, or a c |
+| BACKUP.[0-9][0-9][0-9] | Any file beginning with BACKUP. followed by exactly three numerals |
+| [[:upper:]]* | Any file beginning with an uppercase letter |
+| [![:digit:]]* | Any file not beginning with a numeral |
+| *[[:lower:]123] | Any file ending |
+
+> cp Options
+
+| Option | Long Option | Meaning |
+| ------ | ----------- | ------- |
+|-a | --archive | Copy the files and directories and all of their attributes, including ownerships and permissions. Normally, copies take on the default attributes of the user performing the copy. |
+| -i | --interactive | Before overwriting an existing file, prompt the user for confirmation. If this option is not specified, cp will silently (meaning there will be no warning) overwrite files. |
+| -r | --recursive | Recursively copy directories and their contents. This option (or the -a option) is required when copying directories. |
+| -u | --update | When copying files from one directory to another, only copy files that either don’t exist or are newer than the existing corresponding files in the destination directory. This is useful when copying large numbers of files as it skips files that don’t need to be copied. |
+| -v | --verbose | Display informative messages as the copy is performed. |
+
+> Make Directory (mkdir)
+```
+mkdir directory...
+mkdir dir1
+mkdir dir1 dir2 dir3
+```
+- (...) three dots means that the command can be repeated
+
+> Move (mv)
+```
+mv source destination
+```
+
+> Remove (rm)
+```
+rm item...
+```
+
 #### Chapter 5:
 #### Chapter 6:
 #### Chapter 7:
