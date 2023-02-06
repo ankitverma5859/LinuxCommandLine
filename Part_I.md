@@ -361,9 +361,128 @@ lrwxrwxrwx 1 root root 7 Feb  6 10:56 fun_1.txt -> fun.txt
 
 #### Chapter 5: Working with Commands
 
->
+> What is a Command?
+- A command is either of the four things listed below.
+- **type** helps us to know the type of the command.
 
-#### Chapter 6:
+1.    **An executable program** i.e a compiled binary such a programs written in C, C++, or scripting language such as PERL, Python, etc Also, binaries/files such as in /usr/bin
+```
+user@ubn-3620:~$ type rm
+rm is /bin/rm
+user@ubn-3620:~$ type mkdir
+mkdir is /bin/mkdir
+```
+
+2.    **A built in shell command** such as cd, etc
+```
+user@ubn-3620:~$ type cd
+cd is a shell builtin
+```
+
+3.    **Shell Functions**
+
+4.    **An alias**
+```
+user@ubn-3620:~$ type ls
+ls is aliased to `ls --color=auto'
+```
+
+> How to find the location of executable of a command?
+- **which** it only works with executables and not with builtins.
+
+```
+user@ubn-3620:~$ which rm
+/bin/rm
+user@ubn-3620:~$ which ls
+/bin/ls
+```
+
+- If we try to run which for builtin commands, then either we get a blank screen or command not found error.
+```
+user@ubn-3620:~$ which cd
+user@ubn-3620:~$
+```
+
+> How to find the information shell builtins usage?
+- --help
+```
+user@ubn-3620:~$ cd --help
+cd: cd [-L|[-P [-e]] [-@]] [dir]
+...
+```
+
+> How to find manual of a program?
+```
+user@ubn-3620:~$ man ls
+```
+
+
+> How to find one liner info of a command?
+- **whatis**
+```
+user@ubn-3620:~$ whatis ls
+ls (1)               - list directory contents
+user@ubn-3620:~$ whatis rm
+rm (1)               - remove files or directories
+```
+
+> How to create an alias of a command/commands?
+```
+user@ubn-3620:~$ foo
+
+Command 'foo' not found, did you mean:
+
+  command 'roo' from snap roo (2.0.3)
+  command 'fox' from deb objcryst-fox
+  command 'fog' from deb ruby-fog
+  command 'fop' from deb fop
+  command 'fgo' from deb fgo
+  command 'fio' from deb fio
+  command 'goo' from deb goo
+  command 'woo' from deb python-woo
+
+See 'snap info <snapname>' for additional versions.
+```
+
+- Creating Alias
+```
+user@ubn-3620:~$ alias foo='cat /etc/passwd | head -n 5'
+user@ubn-3620:~$ foo
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+```
+
+- Unalias (Deleting the alias)
+```
+user@ubn-3620:~$ unalias
+unalias: usage: unalias [-a] name [name ...]
+(base) user@ubn-3620:~$ unalias foo
+(base) user@ubn-3620:~$ foo
+```
+
+```
+Command 'foo' not found, did you mean:
+
+  command 'roo' from snap roo (2.0.3)
+  command 'fox' from deb objcryst-fox
+  command 'fio' from deb fio
+  command 'fog' from deb ruby-fog
+  command 'fgo' from deb fgo
+  command 'woo' from deb python-woo
+  command 'fop' from deb fop
+  command 'goo' from deb goo
+
+See 'snap info <snapname>' for additional versions.
+```
+
+#### Chapter 6: Redirection
+
+
+
+
 #### Chapter 7:
 #### Chapter 8:
 #### Chapter 9:
