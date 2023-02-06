@@ -301,7 +301,68 @@ mv source destination
 rm item...
 ```
 
-#### Chapter 5:
+> Link (ln)
+
+- Suppose you have a file in dir1 and you want this same file in dir2 as well. 
+- Option 1: You can copy the file from dir1 to dir2.
+- Option 2: You can create a link/reference to the file in dir1 from dir2. This is useful when you do not want to create a replica of the file. It saves memory. Also, if you make change at one place, it will be reflected at all the places.
+
+> Hard Link 
+```
+ln item link
+```
+
+- With -i option we can see the inode number which confirms if two file are linked.
+- Here, 3148780 is inode number of files fun.txt dir1/fun_1.txt and dir2/fun_2.txt
+- We can also observe, the number of hardlinks is 3.
+
+```
+root@ubn-3620:~/Documents/arena# ln fun.txt dir1/fun_1.txt
+root@ubn-3620:~/Documents/arena# ln fun.txt dir2/fun_2.txt
+
+root@ubn-3620:~/Documents/arena# ls -li . dir1 dir2
+.:
+total 12
+3162155 drwxr-xr-x 2 root root 4096 Feb  6 10:44 dir1
+3162156 drwxr-xr-x 2 root root 4096 Feb  6 10:45 dir2
+3148780 -rw-r--r-- ***3*** root root   18 Feb  6 10:44 fun.txt
+
+dir1:
+total 4
+3148780 -rw-r--r-- 3 root root 18 Feb  6 10:44 fun_1.txt
+
+dir2:
+total 4
+3148780 -rw-r--r-- 3 root root 18 Feb  6 10:44 fun_2.txt
+```
+
+- There are few limitations of hard links. 
+- A hard link cannot reference a file that is outside its file system i.e a link cannot reference a file that is not on the same disk partition.
+- A hard link may not reference a directory.
+
+
+> Soft Link
+- The limitations of hard links are oversome with soft links.
+- Just add -s option to it. 
+
+```
+ln -s item link
+```
+
+```
+root@ubn-3620:~/Documents/arena# ln -s fun.txt dir1/fun_1.txt
+root@ubn-3620:~/Documents/arena# cd dir1
+root@ubn-3620:~/Documents/arena/dir1# ls -l
+total 0
+lrwxrwxrwx 1 root root 7 Feb  6 10:56 fun_1.txt -> fun.txt
+```
+
+- With -l optoin of ls, we can observe the soft link ***fun_1.txt -> fun.txt***
+
+#### Chapter 5: Working with Commands
+
+>
+
 #### Chapter 6:
 #### Chapter 7:
 #### Chapter 8:
