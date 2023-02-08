@@ -542,11 +542,209 @@ or
 user@ubn-3620:~/arena$ ls /bin/usr &> opt.txt
 ```
 
+And, if you want to append the output+error then use the following:
+
+```
+user@ubn-3620:~/arena$ ls /bin/usr &>> opt.txt
+```
+
+If you want to dispose the output then(mostly done for errors) 
+
+```
+user@ubn-3620:~/arena$ ls /bin/usr 2> /dev/null
+```
+
+> How to concatenate files?
+- cat : Concatenate
+
+```
+user@ubn-3620:~/arena$ cat > 1.txt
+1
+2
+3
+user@ubn-3620:~/arena$ cat 2.txt
+cat: 2.txt: No such file or directory
+user@ubn-3620:~/arena$ cat > 2.txt
+4
+5
+6
+user@ubn-3620:~/arena$ cat > 3.txt
+7
+8
+9
+```
+
+```
+user@ubn-3620:~/arena$ cat ?.txt > result.txt 
+(base) user@ubn-3620:~/arena$ ls
+1.txt  2.txt  3.txt  books.txt  fruits.txt  imp_files  ls_output.txt  numbers.txt  opt.txt  result.txt
+user@ubn-3620:~/arena$ less result.txt
+user@ubn-3620:~/arena$ cat result.txt
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
+
+- cat always concatenates files in sorted order.
+
+> How to use standard output of one command as standard input of another?
+- Using Pipes |
+
+```
+user@ubn-3620:~/arena$ ls /usr/bin -l | less
+```
+
+- Using some filters
+
+```
+user@ubn-3620:~/arena$ cat result.txt
+1
+2
+11
+12
+31
+3
+4
+5
+6
+7
+8
+9
+9
+8
+8
+```
 
 
+- To sort the result 
 
+```
+user@ubn-3620:~/arena$ cat result.txt | sort
+1
+2
+3
+4
+5
+6
+7
+8
+8
+8
+9
+9
+```
 
+- To sort and find the uniq values
+```
+(base) user@ubn-3620:~/arena$ cat result.txt | sort | uniq
+1
+11
+12
+2
+3
+31
+4
+5
+6
+7
+8
+9
+```
 
+- To find the duplicates
+```
+user@ubn-3620:~/arena$ cat result.txt | uniq -d
+9
+8
+```
+
+> How to find number of lines, words, and bytes of a file?
+- wc
+
+```
+user@ubn-3620:~/arena$ wc result.txt
+15 15 33 result.txt  
+```
+
+- To only find number of lines? add -l as option
+
+```
+user@ubn-3620:~/arena$ wc -l result.txt
+15 result.txt
+```
+
+> How to print lines matching a pattern?
+- Using grep
+
+```
+user@ubn-3620:~/arena$ cat result.txt
+1
+2
+11
+12
+31
+3
+4
+5
+6
+7
+8
+9
+9
+8
+8
+apple
+Apple
+apple123
+banana
+bat
+```
+
+- Find the lines that have apple?
+
+```
+user@ubn-3620:~/arena$ cat result.txt | grep apple
+apple
+apple123
+```
+
+- To make the search case-insensitive add -i as option
+```
+user@ubn-3620:~/arena$ cat result.txt | grep -i apple
+apple
+Apple
+apple123
+```
+
+- To find the lines that do not match the patter add -v as option
+```
+user@ubn-3620:~/arena$ cat result.txt | grep -v apple
+1
+2
+11
+12
+31
+3
+4
+5
+6
+7
+8
+9
+9
+8
+8
+Apple
+banana
+bat
+```
+"Apple" has occurred because it wasn't case-insensitive search.
 
 
 
