@@ -1,6 +1,6 @@
 # Part I : Learning the Shell
 
-#### Chapter 1: What is Shell?
+## Chapter 1: What is Shell?
 - The shell is a program that takes keyboard commands and passes them to the operating system to carry out. 
 - Almost all Linux distributions supply a shell program from the GNU Project called **bash**. 
 - The name is an acronym for **b**ourne-**a**gain **sh**ell, a reference to the fact that bash is an enhanced replacement for sh, the original Unix shell program written by Steve Bourne.
@@ -54,7 +54,7 @@ Mem:        3922464      772944     1130292      238516     2019228     2633224
 Swap:       7812092      478976     7333116
 ```
 
-#### Chapter 2: Navigation
+## Chapter 2: Navigation
 
 > Print Current Working Directory
 ```
@@ -105,7 +105,7 @@ cd ~username
 .. (dot dot)
 ```
 
-#### Chapter 3:
+## Chapter 3: Exploring the System
 
 > List the contents of the Current Directory
 ```
@@ -232,7 +232,7 @@ q           : Quit
 - Here, soft links comes in to picture. We create a symbolic link called foo and point it to foo_2.6. All the programs refer to foo to execute. Since, foo is pointing to foo_2.6 it will be executed.
 - During the update/downgrade of the version we just update the symbolic link of the foo, and thats it.
 
-#### Chapter 4: Manipulating Files and Directories
+## Chapter 4: Manipulating Files and Directories
 
 > COPY
 ```
@@ -359,7 +359,7 @@ lrwxrwxrwx 1 root root 7 Feb  6 10:56 fun_1.txt -> fun.txt
 
 - With -l optoin of ls, we can observe the soft link ***fun_1.txt -> fun.txt***
 
-#### Chapter 5: Working with Commands
+## Chapter 5: Working with Commands
 
 > What is a Command?
 - A command is either of the four things listed below.
@@ -479,6 +479,73 @@ See 'snap info <snapname>' for additional versions.
 ```
 
 #### Chapter 6: Redirection
+
+- Every program produces result. The result could be of two type:
+- 1) The programs results i.e what the program is designed to do.
+- 2) The staus and error message
+
+- In Unix, everything is a file.
+- Programs such as ls sends its results to a file called standard output(stdout) and their status messages to a file called standard error(stderr).
+- By default, both the standard output and standard error are linked to the screen. 
+
+> How do we redirect the output of a program?
+- Using redirection operator i.e ">"
+
+```
+usr@ubn-3620:~/arena$ ls -l > ls_output.txt
+```
+
+- > operator can also be used to truncate a file.
+
+```
+user@ubn-3620:~/arena$ > ls_output.txt
+```
+
+- Everytime we use a redirection operator(>) it will create a new file.
+- So, how do we append with redirection operator. By using >>.
+
+```
+user@ubn-3620:~/arena$ ls -l >> ls_output.txt
+```
+
+However, if we try to redirect an error message with ">", it wont work. Instead, by default it will be printed on the screen.
+
+```
+user@ubn-3620:~/arena$ ls /bin/usr > opt.txt
+ls: cannot access '/bin/usr': No such file or directory
+```
+
+Why does this happen?
+- We need to refer to file descriptors. 
+- A program can produce output on any streams. 
+  0 - Standard Input
+  1 - Standard Output
+  2 - Standard Error
+  
+ So, if you want to redirect standard error.
+ 
+ ```
+user@ubn-3620:~/arena$ ls /bin/usr 2> opt.txt
+user@ubn-3620:~/arena$ cat opt.txt
+ls: cannot access '/bin/usr': No such file or directory
+ ```
+ 
+ What if you want to redirect both standard output and standard error?
+ 
+```
+user@ubn-3620:~/arena$ ls /bin/usr > opt.txt 2>&1
+```
+
+or 
+
+```
+user@ubn-3620:~/arena$ ls /bin/usr &> opt.txt
+```
+
+
+
+
+
 
 
 
