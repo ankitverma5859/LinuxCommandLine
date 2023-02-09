@@ -478,7 +478,7 @@ Command 'foo' not found, did you mean:
 See 'snap info <snapname>' for additional versions.
 ```
 
-#### Chapter 6: Redirection
+## Chapter 6: Redirection
 
 - Every program produces result. The result could be of two type:
 - 1) The programs results i.e what the program is designed to do.
@@ -746,10 +746,55 @@ bat
 ```
 "Apple" has occurred because it wasn't case-insensitive search.
 
+> How to print a few lines of a file the top?
+- head
+- By default, head will display the first 10 lines of a file
 
+```
+head filename
+```
 
-#### Chapter 7:
-#### Chapter 8:
-#### Chapter 9:
-#### Chapter 10:
+- To specify the number of lines to print by head, we can use -n option
+
+```
+head -n 5 filename
+```
+Here, 5 lines will be printed from the top.
+
+> How to print the bottom few lines of a file?
+- tail 
+- By default tail also prints the last 10 lines of a file.
+
+```
+tail filename
+```
+
+```
+tail -n 5 filename
+```
+
+Suppose, there is a log file which is continuously getting appended. We can use tail command to see the live logs with -f option.
+
+```
+tail -f filename
+```
+
+> What if we want to print an output both on the screen/stdout and in a file?
+- tee
+
+```
+user@ubn-3620:~/arena$ ls /usr/bin | tail -n 5 | tee log.txt | grep js
+zjsdecode
+user@ubn-3620:~/arena$ cat log.txt
+zipinfo
+zipnote
+zipsplit
+zjsdecode
+zlib-flate
+```
+
+## Chapter 7: Seeing the world as Linus sees it.
+## Chapter 8:
+## Chapter 9:
+## Chapter 10:
  
