@@ -793,7 +793,7 @@ zjsdecode
 zlib-flate
 ```
 
-## Chapter 7: Seeing the world as Linus sees it.
+## Chapter 7: Seeing the world as Linux sees it.
 ## Chapter 8:
 ## Chapter 9:
 ## Chapter 10:
