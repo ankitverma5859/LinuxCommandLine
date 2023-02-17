@@ -794,6 +794,77 @@ zlib-flate
 ```
 
 ## Chapter 7: Seeing the world as Linux sees it.
+> echo
+
+- Print a string on the terminal
+```
+user@ubn-3620:~$ echo Hello, Linux.
+Hello, Linux.
+```
+
+- * wildcard matches everything hence prints all that is present in the current working directory
+- Note that it * doesnt prints the hidden files
+```
+user@ubn-3620:~$ echo *
+Desktop Documents Downloads Music Pictures Public Templates Untitled.ipynb Videos anaconda3 arena examples.desktop f.cpp f.h f.o snap
+```
+
+- To display the hidden files
+```
+user@ubn-3620:~$ echo .[!.]*
+.ICEauthority .bash_history .bash_logout .bashrc .cache .conda .config .dbus .emacs.d .gnupg .gphoto .ipynb_checkpoints .ipython .java .jupyter .lesshst .local .mozilla .netbeans .node_repl_history .npm .oracle_jre_usage .pgadmin .pki .profile .python_history .ssh .sudo_as_admin_successful .tmux.conf .tmux.conf.swp .viminfo .vscode .wdm .wget-hsts
+```
+
+- Prints all that starts with D
+```
+user@ubn-3620:~$ echo D*
+Desktop Documents Downloads
+```
+
+- Prints all that ends with s
+```
+user@ubn-3620:~$ echo *s
+Documents Downloads Pictures Templates Videos
+```
+
+- echo takes multiple arguments as well
+```
+user@ubn-3620:~$ echo D* T*
+Desktop Documents Downloads Templates
+```
+
+- Here, A* is printed becuase it didnt find files/directories starting with A.
+```
+user@ubn-3620:~$ echo D* A*
+Desktop Documents Downloads A*
+```
+
+- Prints directories/files that start with an uppercase
+```
+user@ubn-3620:~$ echo [[:upper:]]*
+Desktop Documents Downloads Music Pictures Public Templates Untitled.ipynb Videos
+```
+
+- Prints directories/files that start with an lowercase
+```
+user@ubn-3620:~$ echo [[:lower:]]*
+anaconda3 arena examples.desktop f.cpp f.h f.o snap
+```
+
+~ To expand the home directory of the current user
+```
+user@ubn-3620:~$ echo ~
+/home/user
+```
+
+- To expand the home directory of a particular user.
+```
+user@ubn-3620:~$ echo ~user
+/home/user
+```
+
+
+
 ## Chapter 8:
 ## Chapter 9:
 ## Chapter 10:
