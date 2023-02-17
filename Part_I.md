@@ -863,7 +863,171 @@ user@ubn-3620:~$ echo ~user
 /home/user
 ```
 
+> Arithmetic Expressions with echo
 
+```
+echo $((expression))
+```
+
+```
+user@ubn-3620:~$ echo $((5/2))
+2
+```
+
+| Operator | Description |
+|----------|-------------|
+| + | Addition |
+| - | Subtraction |
+| * | Multiplication |
+| / | Division (but remember, since expansion supports only integer arithmetic, results are integers) |
+| % | Modulo, which simply means “remainder” |
+| ** | Exponentiation |
+
+
+```
+user@ubn-3620:~$ echo $(((5/2)*(5%2)))
+2
+```
+
+```
+user@ubn-3620:~$ echo Five divided by two equals $((5/2))
+Five divided by two equals 2
+```
+
+
+> Brace Expansion
+
+```
+user@ubn-3620:~$ echo {A,B,C}-File
+A-File B-File C-File
+```
+
+```
+user@ubn-3620:~$ echo {A..Z}-File
+A-File B-File C-File D-File E-File F-File G-File H-File I-File J-File K-File L-File M-File N-File O-File P-File Q-File R-File S-File T-File U-File V-File W-File X-File Y-File Z-File
+```
+
+```
+user@ubn-3620:~$ echo {0..10}-file
+0-file 1-file 2-file 3-file 4-file 5-file 6-file 7-file 8-file 9-file 10-file
+```
+
+```
+user@ubn-3620:~$ echo {00..15}-file
+00-file 01-file 02-file 03-file 04-file 05-file 06-file 07-file 08-file 09-file 10-file 11-file 12-file 13-file 14-file 15-file
+```
+
+```
+user@ubn-3620:~$ echo {Z..A}-file
+Z-file Y-file X-file W-file V-file U-file T-file S-file R-file Q-file P-file O-file N-file M-file L-file K-file J-file I-file H-file G-file F-file E-file D-file C-file B-file A-file
+```
+
+```
+user@ubn-3620:~$ echo {A{1,2}B{3,4}}-file
+{A1B3}-file {A1B4}-file {A2B3}-file {A2B4}-file
+```
+
+```
+user@ubn-3620:~$ echo {2001..2003}-{01..12}
+2001-01 2001-02 2001-03 2001-04 2001-05 2001-06 2001-07 2001-08 2001-09 2001-10 2001-11 2001-12 2002-01 2002-02 2002-03 2002-04 2002-05 2002-06 2002-07 2002-08 2002-09 2002-10 2002-11 2002-12 2003-01 2003-02 2003-03 2003-04 2003-05 2003-06 2003-07 2003-08 2003-09 2003-10 2003-11 2003-12
+```
+
+> Parameter Expansino
+
+```
+user@ubn-3620:~$ echo $USER
+user
+```
+
+- To list all the available variables
+```
+user@ubn-3620:~$ printenv
+```
+
+> Command Substitution
+
+```
+echo $(COMMAND)
+```
+
+```
+echo `COMMAND`
+```
+
+```
+user@ubn-3620:~$ ls -l $(which cp)
+-rwxr-xr-x 1 root root 141528 Jan 18  2018 /bin/cp
+```
+
+- If there is a filename called File 1.txt 
+```
+echo File 1.txt will not work as their is a space between File 1
+```
+
+- Solution
+```
+echo "File 1.txt"
+```
+
+```
+user@ubn-3620:~$ echo this is a        test
+this is a test
+```
+
+```
+user@ubn-3620:~$ echo "this is a            test"
+this is a            test
+```
+
+```
+user@ubn-3620:~$ echo $(cal)
+February 2023 Su Mo Tu We Th Fr Sa 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28
+```
+
+```
+user@ubn-3620:~$ echo "$(cal)"
+   February 2023
+Su Mo Tu We Th Fr Sa
+          1  2  3  4
+ 5  6  7  8  9 10 11
+12 13 14 15 16 17 18
+19 20 21 22 23 24 25
+26 27 28
+```
+
+- In the first instance, the unquoted command substitution resulted in a command line containing 38 arguments. 
+- In the second, it resulted in a command line with one argument that includes the embedded spaces and newlines.
+
+
+```
+user@ubn-3620:~$ echo "$(cal) $((2+2)) "
+   February 2023
+Su Mo Tu We Th Fr Sa
+          1  2  3  4
+ 5  6  7  8  9 10 11
+12 13 14 15 16 17 18
+19 20 21 22 23 24 25
+26 27 28
+                       4
+```
+
+- To suppress all the expansions single quotes can be used.
+```
+user@ubn-3620:~$ echo '$(cal) $((2+2))'
+$(cal) $((2+2))
+```
+
+
+```
+user@ubn-3620:~$ echo Your bill is $100.00
+Your bill is 00.00
+```
+
+- To escape a single character
+```
+(base) user@ubn-3620:~$ echo Your bill is \$100.00
+Your bill is $100.00
+```
 
 ## Chapter 8:
 ## Chapter 9:
