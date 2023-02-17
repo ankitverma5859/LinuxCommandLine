@@ -1063,11 +1063,11 @@ Cut-and-Paste Commands
 | alt-backspace | Kill text from the cursor location to the beginning of the current word. If the cursor is at the beginning of a word, kill the previous word. |
 | ctrl-Y | Yank text from the kill-ring and insert it at the cursor location. |
 
-CTRL+R : Reverse Search
-history : to list the commands that have been executed earlier. Shell stores aroung 1K commands
-!! : Runs previous command
-!Number : Runs the command number in the history list.
-history | head -n 10
+- CTRL+R : Reverse Search
+- history : to list the commands that have been executed earlier. Shell stores aroung 1K commands
+- !! : Runs previous command
+- !Number : Runs the command number in the history list.
+- history | head -n 10
 
 
 
