@@ -1029,7 +1029,7 @@ Your bill is 00.00
 Your bill is $100.00
 ```
 
-## Chapter 8:
+## Chapter 8: Advanced Keyboard Tricks
 ## Chapter 9:
 ## Chapter 10:
  
